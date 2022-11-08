@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sirb_Maria_Lab2.Data;
 
@@ -11,9 +12,10 @@ using Sirb_Maria_Lab2.Data;
 namespace Sirb_Maria_Lab2.Migrations
 {
     [DbContext(typeof(Sirb_Maria_Lab2Context))]
-    partial class Sirb_Maria_Lab2ContextModelSnapshot : ModelSnapshot
+    [Migration("20221108141742_Member")]
+    partial class Member
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Sirb_Maria_Lab2.Data;
+using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +9,11 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<Sirb_Maria_Lab2Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Sirb_Maria_Lab2Context") ?? throw new InvalidOperationException("Connection string 'Sirb_Maria_Lab2Context' not found.")));
 
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+// .AddEntityFrameworkStores<LibraryIdentifyContext>();
+builder.Services.AddDbContext<LibraryIdentifyContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("Sirb_Maria_Lab2Context") ?? throw new InvalidOperationException("Connection string 'Sirb_Maria_Lab2Context' not found.")));
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<LibraryIdentifyContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +28,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
