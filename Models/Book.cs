@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Policy;
@@ -9,6 +10,9 @@ namespace Sirb_Maria_Lab2.Models
     {
         public int ID { get; set; }
         [Display(Name = "Book Title")]
+
+        [Required(ErrorMessage = "Title is rquired!")]
+        [StringLength(150, MinimumLength =3)]
         public string Title { get; set; }
         //public string Author { get; set; }
         public int? AuthorID { get; set; }
